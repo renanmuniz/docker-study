@@ -1,0 +1,21 @@
+comandos docker:
+
+Buildar uma imagem dockerfile:
+docker build .
+(tem que ser feito no diretório onde está o arquivo dockerfile)
+
+Ver containers:
+docker ps -a
+
+Iniciar container:
+docker run -p 3000:3000 443240a6195c6fc0e2e1f5e445d4b9b1361f38e6304c3
+
+"-p 3000:3000" está setando a porta de comunicacao do OS com a do container"
+"443240a6195c6fc0e2e1f5e445d4b9b1361f38e6304c3" é a identificacao do container após buildar a imagem
+
+Parar um container em execucao:
+docker stop bd8c0b5ed77f
+"bd8c0b5ed77f" é o ID do container que aparece ao executar o "docker ps -a"
+
+
+
