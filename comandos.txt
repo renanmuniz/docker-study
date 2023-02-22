@@ -1,0 +1,26 @@
+comandos docker:
+
+Buildar uma imagem dockerfile:
+docker build .
+(tem que ser feito no diretório onde está o arquivo dockerfile)
+
+Ver containers:
+docker ps -a
+
+Iniciar container:
+docker run -p [porta_de_acesso_do_sistema_operacional]:[porta_interna_do_container] [id da imagem gerada pelo comando' docker build .']
+Ex.: docker run -p 9090:8080 443240a6195c6fc0e2e1f5e445d4b9b1361f38e6304c3
+
+Parar um container em execucao:
+docker stop bd8c0b5ed77f
+"bd8c0b5ed77f" é o ID do container que aparece ao executar o "docker ps -a"
+
+Executar um container oficial do docker hub
+docker run nomeDaImage
+ex.: docker run -it node   esse -it é necessário para habilitar o prompt de comando do node no terminal
+
+
+
+
+
+
