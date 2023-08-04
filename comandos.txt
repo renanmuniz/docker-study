@@ -11,13 +11,48 @@ Iniciar container:
 docker run -p [porta_de_acesso_do_sistema_operacional]:[porta_interna_do_container] [id da imagem gerada pelo comando' docker build .']
 Ex.: docker run -p 9090:8080 443240a6195c6fc0e2e1f5e445d4b9b1361f38e6304c3
 
+Iniciar container em modo detached(liberando terminal para mais comandos. Porém não mostra logs da aplicação):
+docker run -p [porta_de_acesso_do_sistema_operacional]:[porta_interna_do_container] -d [id da imagem gerada pelo comando' docker build .']
+Ex.: docker run -p 9090:8080 -d 443240a6195c6fc0e2e1f5e445d4b9b1361f38e6304c3
+
 Parar um container em execucao:
 docker stop bd8c0b5ed77f
 "bd8c0b5ed77f" é o ID do container que aparece ao executar o "docker ps -a"
 
+Parar todos os containers:
+docker kill $(docker ps -q)
+ou
+docker ps -aq | xargs docker stop | xargs docker rm
+
+Excluir container:
+docker rm "bd8c0b5ed77f"
+
+Docker Hub, onde tem imagens oficiais para usar:
+https://hub.docker.com/
+
+Baixar uma imagem oficial:
+docker pull node
+
 Executar um container oficial do docker hub
 docker run nomeDaImage
 ex.: docker run -it node   esse -it é necessário para habilitar o prompt de comando do node no terminal
+
+
+Reinicar um container parado:
+docker start [id_do_container]
+
+
+Ver logs de um container:
+docker logs ebebb5c7ae0d
+
+Ver e seguir logs de um conteiner
+docker logs ebebb5c7ae0d -f
+
+
+
+
+
+
 
 
 
