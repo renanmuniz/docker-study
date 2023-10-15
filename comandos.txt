@@ -4,34 +4,52 @@ Buildar uma imagem dockerfile:
 docker build .
 (tem que ser feito no diretório onde está o arquivo dockerfile)
 
+Buildar uma imagem setando nome para ela:
+docker build -t meu-app:v1 .
+
+
 Ver containers:
 docker ps -a
+
 
 Iniciar container:
 docker run -p [porta_de_acesso_do_sistema_operacional]:[porta_interna_do_container] [id da imagem gerada pelo comando' docker build .']
 Ex.: docker run -p 9090:8080 443240a6195c6fc0e2e1f5e445d4b9b1361f38e6304c3
 
+
 Iniciar container em modo detached(liberando terminal para mais comandos. Porém não mostra logs da aplicação):
 docker run -p [porta_de_acesso_do_sistema_operacional]:[porta_interna_do_container] -d [id da imagem gerada pelo comando' docker build .']
 Ex.: docker run -p 9090:8080 -d 443240a6195c6fc0e2e1f5e445d4b9b1361f38e6304c3
+
 
 Parar um container em execucao:
 docker stop bd8c0b5ed77f
 "bd8c0b5ed77f" é o ID do container que aparece ao executar o "docker ps -a"
 
+
 Parar todos os containers:
 docker kill $(docker ps -q)
-ou
+
+
+Remover todos os containers parados:
+docker container prune
+
+
+Parar e remover todos os containers:
 docker ps -aq | xargs docker stop | xargs docker rm
+
 
 Excluir container:
 docker rm "bd8c0b5ed77f"
 
+
 Docker Hub, onde tem imagens oficiais para usar:
 https://hub.docker.com/
 
+
 Baixar uma imagem oficial:
 docker pull node
+
 
 Executar um container oficial do docker hub
 docker run nomeDaImage
@@ -42,17 +60,57 @@ Reinicar um container parado:
 docker start [id_do_container]
 
 
+Executar um container que foi parado, em modo iterativo(abre terminal para iteragir via cmd)
+docker start -ai nome_ou_id_do_container
+
+
 Ver logs de um container:
 docker logs ebebb5c7ae0d
+
 
 Ver e seguir logs de um conteiner
 docker logs ebebb5c7ae0d -f
 
 
+Ver imagens:
+docker images
 
 
+Remover imagens
+(Só consegue remover imagens de containers que não existam mais, mesmo parados)
+docker rmi nome_da_imagem
 
 
+Remover todas as imagens:
+docker rmi $(docker images -q)
+ou
+docker image prune
+
+
+Executar container mas remover imagem ao final da execucao usando "--rm":
+docker run -p 9090:8080 -d --rm 443240a6195c6fc0e2e1f5e445d4b9b1361f38e6304c3
+
+
+Inspecionar uma imagem:
+docker image inspect nome_da_imagem
+
+
+Executar container definindo um nome para ele usando "--name":
+docker run -p 9090:8080 -d --name meu_container 443240a6195c6fc0e2e1f5e445d4b9b1361f38e6304c3
+
+
+Compartilhar uma imagem pelo dockerhub:
+1) Logar no seu dockerhub
+docker login
+
+2) Criar imagem seguindo o nome do repositório criado:
+docker build -t renanmuniz/node_hello_world .
+
+3) Subir a imagem criada:
+docker push renanmuniz/node_hello_world
+
+4)Baixar a imagem:
+docker pull renanmuniz/node_hello_world:latest
 
 
 
